@@ -1,0 +1,89 @@
+#TASK 2 [Calculator]
+num1 = float(input("Enter the first number: "))
+num2 = float(input("Enter the second number: "))
+operation = int(input("Choose an operation (1 for addition, 2 for subtraction, 3 for multiplication, 4 for division): "))
+if operation == 1:
+    result = num1 + num2
+elif operation == 2:
+    result = num1 - num2
+elif operation == 3:
+    result = num1 * num2
+elif operation == 4:
+    result = num1 / num2
+else:
+    print("Invalid operation choice")
+    result = None
+print("The result is:", result)
+
+
+#Task 5 [Contact Book]
+contacts = {}
+def add_contact():
+    name = input("Enter contact name: ")
+    if name not in contacts:
+        phone = input("Enter contact phone number: ")
+        email = input("Enter contact email: ")
+        address = input("Enter contact address: ")
+        contacts[name] = {"phone": phone, "email": email, "address": address}
+        print("Contact added!")
+def view_contacts():
+    for name in contacts:
+        print(name)
+def search_contacts():
+    term = input("Enter search term: ")
+    for name in contacts:
+        if term in name or term in contacts[name]["phone"] or term in contacts[name]["email"] or term in contacts[name]["address"]:
+            print(name)
+def update_contact():
+    name = input("Enter contact name: ")
+    if name in contacts:
+        new_info = input("Enter new information (phone, email, or address): ")
+        if "phone" in new_info:
+            contacts[name]["phone"] = new_info.split(", ")[0]
+        elif "email" in new_info:
+            contacts[name]["email"] = new_info.split(", ")[0]
+        elif "address" in new_info:
+            contacts[name]["address"] = new_info.split(", ")[0]
+        print("Contact updated!")
+def delete_contact():
+    name = input("Enter contact name: ")
+    if name in contacts:
+        del contacts[name]
+        print("Contact deleted!")
+while True:
+    print("Contact Book")
+    print("1. Add Contact")
+    print("2. View Contacts")
+    print("3. Search Contacts")
+    print("4. Update Contact")
+    print("5. Delete Contact")
+    print("6. Exit")
+    choice = input("Enter your choice: ")
+    if choice == "1":
+        add_contact()
+    elif choice == "2":
+        view_contacts()
+    elif choice == "3":
+        search_contacts()
+    elif choice == "4":
+        update_contact()
+    elif choice == "5":
+        delete_contact()
+    elif choice == "6":
+        break
+    else:
+        print("Invalid choice. Please try again.")
+
+
+#Task 3 [Password Generator]
+import random
+import string
+def generate_password(length):
+    all_characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(all_characters) for _ in range(length))
+    return password
+length = int(input("Enter the desired length of the password: "))
+password = generate_password(length)
+print("Generated Password:", password)
+
+        
